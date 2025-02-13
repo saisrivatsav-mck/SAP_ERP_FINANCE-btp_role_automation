@@ -1,0 +1,93 @@
+<mvc:View controllerName="mck.fin.btproleautomation.controller.Main"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar">
+    <f:DynamicPage id="mck-btproles-dynPage" busy="true">
+        <f:title>
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <Title id="mck-btproles-dynPageTitle" text="Subaccount: ErpDev"></Title>
+                </f:heading>
+                <f:expandedContent>
+                    <Label id="mck-btp-roles-dynPageDescr" text="Dev Subaccount"></Label>
+                </f:expandedContent>               
+                <f:actions>
+                    <Button icon="sap-icon://excel-attachment" type="Transparent" text="Export" press="onExport">
+                        <customData>
+                            <BadgeCustomData id="mck-btproles-exportBadge" key="badge" value="" visible="true"></BadgeCustomData>
+                        </customData>
+                    </Button>
+                    <Button text="Transport Roles" icon="sap-icon://shipping-status" type="Emphasized" press="onTransportRoles">
+                        <customData>
+                            <BadgeCustomData id="mck-btproles-transBadge" key="badge" value="" visible="true"></BadgeCustomData>
+                        </customData>
+                    </Button>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Total Role Collections"></ObjectAttribute>
+                        <ObjectStatus id="mck-btproles-totRoleColl" text="" state="Success"></ObjectStatus>
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout>
+                        <ObjectAttribute title="Total Roles" ></ObjectAttribute>
+                        <ObjectStatus id="mck-btproles-totRoles" text="" state="Success"></ObjectStatus>
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <!-- Role Collections Table -->
+                <Table id="mck-btproles-roleColTab" 
+                       mode="MultiSelect"  
+                       multiSelectMode="SelectAll" 
+                       growing="true" 
+                       alternateRowColors="true" 
+                       growingThreshold="500"                       
+                       inset="false"
+                       class="sapFDynamicPageAlignContent"
+                       width="auto"
+                       selectionChange="onRoleCollSelect"
+                       items="{RoleCollections>/}">
+                    <headerToolbar>                        
+                        <OverflowToolbar >
+                            <Title text="Role Collections"></Title>
+                            <ToolbarSpacer />
+                            <SearchField id="mck-btproles-searchRoleCol" width="30%" placeholder="Search for a role-collection" liveChange="onLiveSearch"></SearchField>                            
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Begin">
+                            <Text text="Name"></Text>
+                        </Column>
+                        <Column hAlign="Begin">
+                            <Text text="Description"></Text>
+                        </Column>
+                    </columns>
+                    <noData>
+                        <IllustratedMessage id="mck-btproles-tabMsg"
+                                            illustrationType="sapIllus-SimpleEmptyList"
+                                            title="No data found"
+                                            description="Click on Go, to fetch the roles for a subaccount"
+                                            enableDefaultTitleAndDescription="false">                
+                        </IllustratedMessage>
+                    </noData>
+                    <items>
+                        <ColumnListItem vAlign="Middle" type="Navigation" press="onRolesRequest">
+                            <cells>
+                                <Text text="{RoleCollections>name}"></Text>
+                                <Text text="{RoleCollections>description}"></Text>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+        </f:content>
+    </f:DynamicPage>    
+</mvc:View>

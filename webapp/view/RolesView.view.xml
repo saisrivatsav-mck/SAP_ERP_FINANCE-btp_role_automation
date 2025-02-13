@@ -1,0 +1,148 @@
+<mvc:View controllerName="mck.fin.btproleautomation.controller.RolesView"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:core="sap.ui.core"
+          xmlns="sap.uxap"
+          xmlns:m="sap.m">
+    
+    <ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false"
+        navigate="onNavBack">
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle >
+                <expandedHeading>
+                    <m:Title id="mck-btproles-objPageTitle" text="" wrapping="true"></m:Title>
+                </expandedHeading>
+                <expandedContent>
+                    <m:Text id="mck-btproles-objPageSubTitle" text=""></m:Text>
+                </expandedContent>
+
+                <snappedHeading>
+                    <m:Title id="mck-btproles-objPageSnapTitle" text="" wrapping="true"></m:Title>
+                </snappedHeading>
+                <snappedContent>
+                    <m:Text id="mck-btproles-objPageSubSnapTitle" text=""></m:Text>
+                </snappedContent>
+
+                <actions>
+                    <m:Button id="mck-btproles-objPageTrans" text="Transport" icon="sap-icon://shipping-status" type="Emphasized" press="onTransportRoles"></m:Button>
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="Roles">
+                <subSections>
+                    <ObjectPageSubSection >
+                        <blocks>
+                            <m:Table id="mck-btproles-rolesTab" 
+                                mode="None"                                   
+                                growing="false" 
+                                alternateRowColors="true" 
+                                growingThreshold="500"                       
+                                inset="false"
+                                class="sapFDynamicPageAlignContent"
+                                width="auto"                                
+                                items="{Roles>/}">
+                                <m:headerToolbar>                        
+                                    <m:OverflowToolbar >
+                                        <m:Title text="Roles"></m:Title>                                                                                                 
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Name"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Description"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Role Template Id"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Role Template Name"></m:Text>
+                                    </m:Column>
+                                </m:columns>
+                                <m:noData>
+                                    <m:IllustratedMessage id="mck-btproles-roletabMsg"
+                                                        illustrationType="sapIllus-SimpleEmptyList"
+                                                        title="No data found"
+                                                        description="No roles under this role collection"
+                                                        enableDefaultTitleAndDescription="false">                
+                                    </m:IllustratedMessage>
+                                </m:noData>
+                                <m:items>
+                                    <m:ColumnListItem vAlign="Middle" type="Inactive">
+                                        <m:cells>
+                                            <m:Text text="{Roles>name}"></m:Text>
+                                            <m:Text text="{Roles>description}"></m:Text>
+                                            <m:Text text="{Roles>roleTemplateAppId}"></m:Text>
+                                            <m:Text text="{Roles>roleTemplateName}"></m:Text>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+            
+            <ObjectPageSection titleUppercase="false" title="Users">
+                <subSections>
+                    <ObjectPageSubSection >
+                        <blocks>
+                            <m:Table id="mck-btproles-usersTab" 
+                                mode="None"                                   
+                                growing="false" 
+                                alternateRowColors="true" 
+                                growingThreshold="500"                       
+                                inset="false"
+                                class="sapFDynamicPageAlignContent"
+                                width="auto"                                
+                                items="{Users>/}">
+                                <m:headerToolbar>                        
+                                    <m:OverflowToolbar >
+                                        <m:Title text="Users"></m:Title>                                                                                                 
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="User Name"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Email"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Name"></m:Text>
+                                    </m:Column>
+                                    <m:Column hAlign="Begin">
+                                        <m:Text text="Origin"></m:Text>
+                                    </m:Column>
+                                </m:columns>
+                                <m:noData>
+                                    <m:IllustratedMessage id="mck-btproles-usertabMsg"
+                                                        illustrationType="sapIllus-SimpleEmptyList"
+                                                        title="No data found"
+                                                        description="No users are assigned to this role collection"
+                                                        enableDefaultTitleAndDescription="false">                
+                                    </m:IllustratedMessage>
+                                </m:noData>
+                                <m:items>
+                                    <m:ColumnListItem vAlign="Middle" type="Inactive">
+                                        <m:cells>
+                                            <m:Text text="{Users>username}"></m:Text>
+                                            <m:Text text="{Users>email}"></m:Text>
+                                            <m:Text text="{Users>givenName}{Users>familyName}"></m:Text>
+                                            <m:Text text="{Users>origin}"></m:Text>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar">
+    <fb:FilterBar showClearOnFB="true" clear="onClear" search="onSearch" showRestoreButton="true" showFilterConfiguration="false" header="Filters">
+        <fb:filterGroupItems>
+            <fb:FilterGroupItem groupName="FilterGrp" name="Role Collection Id" label="Role Collection" visibleInFilterBar="true">
+                <fb:control>
+                    <Input valueHelpRequest="" showValueHelp="true" value=""></Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+        </fb:filterGroupItems>
+    </fb:FilterBar>	
+</core:FragmentDefinition>

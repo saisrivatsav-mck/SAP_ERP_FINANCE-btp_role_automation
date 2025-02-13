@@ -1,0 +1,162 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "mck.fin.btproleautomation",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.16.3",
+      "toolsId": "04db9869-ce13-4bf1-b10d-ac35b29d28d4"
+    },
+    "dataSources": {
+      "roleCollectionService":{
+        "uri": "rolcol/sap/rest/authorization/v2",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "roles-manage": {
+          "semanticObject": "roles",
+          "action": "manage",
+          "title": "{{flpTitle}}",
+          "subTitle": "{{flpSubtitle}}",
+          "icon": "sap-icon://shipping-status",
+          "info": "Migrate roles across subaccounts",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.132.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "RoleCollections":{
+        "type": "sap.ui.model.json.JSONModel",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      },
+      "Roles":{
+        "type": "sap.ui.model.json.JSONModel",
+        "preload": false,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      },
+      "Users":{
+        "type": "sap.ui.model.json.JSONModel",
+        "preload": false,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mck.fin.btproleautomation.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "mck.fin.btproleautomation.view",
+        "async": true,
+        "viewPath": "mck.fin.btproleautomation.view"
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+          "name": "RouteRolesView",
+          "pattern": "Roles/{roleCollectionName}",
+          "target":[
+            "TargetRolesView"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "TargetRolesView":{
+          "viewType": "XML",
+          "transition": "slide",
+          "viewName": "RolesView",
+          "viewId": "RolesView",
+          "clearControlAggregation": false
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "mck.fin.btproleautomation.view.App",
+      "type": "XML",
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "mckfinbtproleautomation"
+  }
+}
